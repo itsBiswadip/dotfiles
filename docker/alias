@@ -1,0 +1,8 @@
+# aliases for docker
+
+alias d="docker "
+alias dps="docker ps"
+alias dl="docker logs"
+alias dlf="docker logs -f"
+alias dx="docker exec -it"
+alias dxr="docker exec -it -u0"
