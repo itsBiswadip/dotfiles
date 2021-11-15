@@ -1,0 +1,12 @@
+#aliases for git
+
+alias g="git "
+alias ga="git add"
+alias gb="git branch"
+alias gc="git commit -m"
+alias gco="git checkout"
+alias gcb="git checkout -b"
+alias gf="git fetch"
+alias gp="git pull"
+alias gps="git push"
+alias gs="git status"
