@@ -1,0 +1,25 @@
+# Taps
+tap "homebrew/core"
+tap "homebrew/cask"         # Install & manage macOS apps through cli
+tap "homebrew/cask-fonts"   # Easily install popular freely distributable fonts
+tap "homebrew/bundle"       
+tap "hashicorp/tap"
+
+# Utilities
+brew "bash"					# Update bash to the latest version
+brew "coreutils"
+brew "jp2a"
+brew "jq"
+brew "nghttp2"
+brew "wget"
+brew "yarn"
+brew "z"					# cli tool to navigate directories faster than cd
+brew "starship"				# cross compatible terminal prompt
+brew "node", link: false
+brew "hashicorp/tap/packer"
+
+# macOS Applications
+cask "font-daddy-time-mono-nerd-font"
+cask "stats"
+cask "google-chrome"
+cask "vagrant"
