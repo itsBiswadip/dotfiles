@@ -1,0 +1,87 @@
+
+#### FIG ENV VARIABLES ####
+# Please make sure this block is at the start of this file.
+[ -s ~/.fig/shell/pre.sh ] && source ~/.fig/shell/pre.sh
+#### END FIG ENV VARIABLES ####
+
+export DOTFILES="$HOME/.dotfiles"
+
+# Since all configuration files are in the same dotfiles directory
+# But not all of them are meamt for the shell
+# This variable sets the accepted filed and they order they are to be loaded
+declare -U accepted_files_invocation_order
+accepted_files_invocation_order=("path" "alias" "function")
+
+# An array of paths to all the files and directories in the dotfiles directory
+declare -U config_files
+config_files=($DOTFILES/**/*)
+
+for filetype in ${accepted_files_invocation_order}
+do
+    for file in ${(M)config_files:#*/$filetype}
+    do
+      source $file
+    done
+done
+
+# case-insensitive matching in case of autocomplete
+zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
+
+# auto complete
+autoload -Uz compinit && compinit
+
+# load every completion after autocomplete loads
+for file in ${(M)config_files:#*/completion}
+do
+  source $file
+done
+
+unset file
+unset filetype
+unset accepted_files_invocation_order
+unset config_files
+
+###########
+# History #
+###########
+
+HISTFILE=~/.zsh_history
+HISTSIZE=100000000
+SAVEHIST=100000000
+
+# sessions append to the history rather than replacing it
+setopt INC_APPEND_HISTORY
+
+# up and down arrow ignores duplicates
+setopt HIST_FIND_NO_DUPS
+
+# consecutive duplicates don’t get added to my history
+setopt HIST_IGNORE_DUPS
+
+# remove oldest command in history which has a duplicate
+setopt HIST_EXPIRE_DUPS_FIRST
+
+# Better history searching with arrow keys
+autoload -U up-line-or-beginning-search
+autoload -U down-line-or-beginning-search
+zle -N up-line-or-beginning-search
+zle -N down-line-or-beginning-search
+bindkey "^[[A" up-line-or-beginning-search # Up
+bindkey "^[[B" down-line-or-beginning-search # Down
+
+#############
+# CLI Tools #
+#############
+
+# z like autojump to traverse directories
+[ -f $BREW_PREFIX/etc/profile.d/z.sh ] && . $BREW_PREFIX/etc/profile.d/z.sh
+
+# Starship prompt for terminal
+eval "$(starship init zsh)"
+
+# Fig adds VSCode style terminal autocomplete
+
+#### FIG ENV VARIABLES ####
+# Please make sure this block is at the end of this file.
+[ -s ~/.fig/fig.sh ] && source ~/.fig/fig.sh
+#### END FIG ENV VARIABLES ####
