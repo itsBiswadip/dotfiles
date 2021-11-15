@@ -1,0 +1,15 @@
+# Inserts a blank line between shell prompts
+add_newline = true
+command_timeout = 1000
+
+# Disable the package module, hiding it from the prompt completely
+[package]
+disabled = true
+
+[username]
+show_always = true
+style_user = "bold 202"     #orange color in ansi 8-bit color scheme
+
+# Show truncated branch name if it is lengthy
+[git_branch]
+truncation_length = 30
