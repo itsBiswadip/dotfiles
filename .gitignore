@@ -1,0 +1,4 @@
+.DS_Store
+
+#Ignore individual git user credentials
+git/*.gitconfig
