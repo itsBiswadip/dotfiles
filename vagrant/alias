@@ -1,0 +1,9 @@
+#aliases for vagrant commands
+
+alias v="vagrant "
+alias vu="vagrant up"
+alias vs="vagrant ssh"
+alias vh="vagrant halt"
+alias vd="vagrant destroy"
+alias vr="vagrant reload"
+alias vrebuild="vagrant destroy -f && vagrant up"
