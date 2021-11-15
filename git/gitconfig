@@ -1,0 +1,16 @@
+# This config contains the global and common git configuration
+# Note: DO NOT add user credentials here
+[user]
+	name = Biswadip Bhowmick
+
+# The below settings enables an organized usage of git user credentials based on scenario
+# Its particularly suitable when you use seperate credentials for different repositiories
+# Here the most common usecase of a personal & work configuration is included which is suitable for me
+# Modify or Extend the configuration to suit your usecase
+
+# Any git repository under the work sub directory under HOME directory uses work related user credentials
+[includeIf "gitdir/i:~/work/"]
+	path = ~/.dotfiles/git/work.gitconfig
+
+[includeIf "gitdir/i:~/personal/"]
+	path = ~/.dotfiles/git/personal.gitconfig
